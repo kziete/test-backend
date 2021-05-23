@@ -11,5 +11,4 @@ class StartJourney:
         vehicle = self.repository.create_vehicle(self.name)
         if vehicle.can_start() and vehicle.max_capacity >= 10:
             self.notifier.send_notifications()
-
-        return vehicle
+            return vehicle
