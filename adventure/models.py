@@ -4,6 +4,7 @@ from django.db import models
 
 
 class Vehicle(models.Model):
+    name = models.CharField(max_length=32)
     max_capacity = models.FloatField()
 
     def can_start(self):

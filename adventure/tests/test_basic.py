@@ -3,6 +3,7 @@ import pytest
 from adventure import models
 from adventure import usecases
 from adventure import repositories
+from adventure import notifiers
 
 
 
@@ -18,15 +19,25 @@ class TestVehicle:
 
 
 class MockJourneyRepository(repositories.JourneyRepository):
-    def get_vehicle(self):
+    def create_vehicle(self, name):
         return models.Vehicle(
-            max_capacity=1
+            max_capacity=10,
+            name=name
         )
+
+
+class MockNotifier(notifiers.Notifier):
+    def send_notifications(self):
+        pass
 
 
 class TestStartJourney:
     def test_start(self):
         repo = MockJourneyRepository()
-        usecase = usecases.StartJourney(repo, None)
-        usecase.execute()
+        notifier = MockNotifier()
+        usecase = usecases.StartJourney(repo, notifier)\
+            .set_params("Kitt")
+        vehicle = usecase.execute()
+
+        assert vehicle.name == "Kitt"
 
