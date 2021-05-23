@@ -4,6 +4,7 @@ from adventure import models
 from adventure import usecases
 from adventure import repositories
 from adventure import notifiers
+from adventure import views
 
 
 
@@ -41,3 +42,18 @@ class TestStartJourney:
 
         assert vehicle.name == "Kitt"
 
+
+class TestStartJourneyAPIView:
+    def test_api(self, client, mocker):
+        mocker.patch.object(
+            views.StartJourneyAPIView,
+            'get_repository',
+            return_value=MockJourneyRepository()
+        )
+
+        payload = {
+            "name": "Kitt"
+        }
+        response = client.post("/adventure/start/", payload)
+
+        assert response.status_code == 201
