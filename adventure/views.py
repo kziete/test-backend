@@ -1,9 +1,6 @@
 from rest_framework import generics
 
-from adventure import serializers
-from adventure import usecases
-from adventure import repositories
-from adventure import notifiers
+from adventure import notifiers, repositories, serializers, usecases
 
 
 class StartJourneyAPIView(generics.CreateAPIView):
@@ -12,11 +9,10 @@ class StartJourneyAPIView(generics.CreateAPIView):
     def perform_create(self, serializer):
         repo = self.get_repository()
         notifier = notifiers.Notifier()
-        usecase = usecases.StartJourney(repo, notifier)\
-            .set_params(serializer.validated_data["name"])
+        usecase = usecases.StartJourney(repo, notifier).set_params(
+            serializer.validated_data["name"]
+        )
         usecase.execute()
 
     def get_repository(self):
         return repositories.JourneyRepository()
-
-

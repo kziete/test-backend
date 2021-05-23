@@ -1,11 +1,6 @@
 import pytest
 
-from adventure import models
-from adventure import usecases
-from adventure import repositories
-from adventure import notifiers
-from adventure import views
-
+from adventure import models, notifiers, repositories, usecases, views
 
 
 class TestBasic:
@@ -21,10 +16,7 @@ class TestVehicle:
 
 class MockJourneyRepository(repositories.JourneyRepository):
     def create_vehicle(self, name):
-        return models.Vehicle(
-            max_capacity=10,
-            name=name
-        )
+        return models.Vehicle(max_capacity=10, name=name)
 
 
 class MockNotifier(notifiers.Notifier):
@@ -36,8 +28,7 @@ class TestStartJourney:
     def test_start(self):
         repo = MockJourneyRepository()
         notifier = MockNotifier()
-        usecase = usecases.StartJourney(repo, notifier)\
-            .set_params("Kitt")
+        usecase = usecases.StartJourney(repo, notifier).set_params("Kitt")
         vehicle = usecase.execute()
 
         assert vehicle.name == "Kitt"
@@ -47,13 +38,11 @@ class TestStartJourneyAPIView:
     def test_api(self, client, mocker):
         mocker.patch.object(
             views.StartJourneyAPIView,
-            'get_repository',
-            return_value=MockJourneyRepository()
+            "get_repository",
+            return_value=MockJourneyRepository(),
         )
 
-        payload = {
-            "name": "Kitt"
-        }
+        payload = {"name": "Kitt"}
         response = client.post("/adventure/start/", payload)
 
         assert response.status_code == 201
