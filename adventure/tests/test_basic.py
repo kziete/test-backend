@@ -10,13 +10,16 @@ class TestBasic:
 
 class TestVehicle:
     def test_can_start(self):
-        vehicle = models.Vehicle()
+        vehicle = models.Vehicle(
+            vehicle_type=models.VehicleType(max_capacity=5), passengers=2
+        )
         assert vehicle.can_start()
 
 
 class MockJourneyRepository(repositories.JourneyRepository):
-    def create_vehicle(self, name):
-        return models.Vehicle(max_capacity=10, name=name)
+    def create_vehicle(self, name, passengers):
+        v_type = models.VehicleType(name="car", max_capacity=5)
+        return models.Vehicle(name=name, passengers=passengers, vehicle_type=v_type)
 
 
 class MockNotifier(notifiers.Notifier):
@@ -28,7 +31,7 @@ class TestStartJourney:
     def test_start(self):
         repo = MockJourneyRepository()
         notifier = MockNotifier()
-        usecase = usecases.StartJourney(repo, notifier).set_params("Kitt")
+        usecase = usecases.StartJourney(repo, notifier).set_params("Kitt", 2)
         vehicle = usecase.execute()
 
         assert vehicle.name == "Kitt"
@@ -42,7 +45,7 @@ class TestStartJourneyAPIView:
             return_value=MockJourneyRepository(),
         )
 
-        payload = {"name": "Kitt"}
+        payload = {"name": "Kitt", "passengers": 2}
         response = client.post("/adventure/start/", payload)
 
         assert response.status_code == 201

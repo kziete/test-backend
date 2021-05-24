@@ -3,12 +3,15 @@ class StartJourney:
         self.repository = repository
         self.notifier = notifier
 
-    def set_params(self, name):
+    def set_params(self, name, passengers):
         self.name = name
+        self.passengers = passengers
         return self
 
     def execute(self):
-        vehicle = self.repository.create_vehicle(self.name)
-        if vehicle.can_start() and vehicle.max_capacity >= 10:
+        vehicle = self.repository.create_vehicle(self.name, self.passengers)
+        if vehicle.can_start():
             self.notifier.send_notifications()
             return vehicle
+
+        return None
