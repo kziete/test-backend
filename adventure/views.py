@@ -10,7 +10,7 @@ class StartJourneyAPIView(generics.CreateAPIView):
         repo = self.get_repository()
         notifier = notifiers.Notifier()
         usecase = usecases.StartJourney(repo, notifier).set_params(
-            **serializer.validated_data
+            serializer.validated_data
         )
         usecase.execute()
 

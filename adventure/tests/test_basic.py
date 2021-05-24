@@ -31,7 +31,8 @@ class TestStartJourney:
     def test_start(self):
         repo = MockJourneyRepository()
         notifier = MockNotifier()
-        usecase = usecases.StartJourney(repo, notifier).set_params("Kitt", 2)
+        data = {"name": "Kitt", "passengers": 2}
+        usecase = usecases.StartJourney(repo, notifier).set_params(data)
         vehicle = usecase.execute()
 
         assert vehicle.name == "Kitt"
