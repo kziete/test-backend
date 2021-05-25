@@ -11,7 +11,7 @@ class VehicleType(models.Model):
 class Vehicle(models.Model):
     name = models.CharField(max_length=32)
     passengers = models.PositiveIntegerField()
-    vehicle_type = models.ForeignKey(VehicleType, on_delete=models.SET_NULL)
+    vehicle_type = models.ForeignKey(VehicleType, null=True, on_delete=models.SET_NULL)
 
     def can_start(self):
         # TODO: romper
