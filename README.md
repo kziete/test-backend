@@ -7,4 +7,6 @@
 
 ## Ejecución
 
-`docker-compose run web pytest
+```bash
+docker-compose run web pytest
+```
