@@ -24,3 +24,5 @@ class TestStartJourney:
 
 
 # TODO: Insertar caso complejo
+
+# TODO: Refactorizar codigo legacy

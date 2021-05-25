@@ -7,6 +7,7 @@ from .test_usecases import MockJourneyRepository
 
 class TestRepository:
     def test_create_vehicle(self, mocker):
+        # se parcha para no probar métodos de la ORM
         mocker.patch.object(models.Vehicle.objects, "create")
         repo = repositories.JourneyRepository()
         repo.create_vehicle(name="a", passengers=10)
@@ -15,6 +16,7 @@ class TestRepository:
 
 class TestNotifier:
     def test_send_notification(self, mocker):
+        # se parcha para no probar métodos del framework
         mocker.patch.object(mail, "send_mail")
         notifier = notifiers.Notifier()
         notifier.send_notifications()
@@ -36,3 +38,5 @@ class TestStartJourneyAPIView:
 
 
 # TODO: Insertar caso complejo
+
+# TODO: Insertar caso con celery
