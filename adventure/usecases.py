@@ -5,9 +5,7 @@ from .repositories import JourneyRepository
 
 
 class StartJourney:
-    def __init__(
-        self, repository: JourneyRepository, notifier: Notifier
-    ) -> StartJourney:
+    def __init__(self, repository: JourneyRepository, notifier: Notifier):
         self.repository = repository
         self.notifier = notifier
 
