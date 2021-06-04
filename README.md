@@ -10,7 +10,7 @@ Una pequeña historia, bla, bla, bla
 ## Ejecución
 
 ```bash
-docker-compose run web pytest
+docker-compose run --rm web pytest
 ```
 
 ## Tarea
