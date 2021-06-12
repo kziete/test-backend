@@ -1,7 +1,8 @@
-from django.core import mail
 import pytest
+from django.core import mail
 
 from adventure import models, notifiers, repositories, usecases, views
+
 from .test_usecases import MockJourneyRepository
 
 
@@ -34,9 +35,21 @@ class TestStartJourneyAPIView:
 
         assert response.status_code == 201
 
+    def test_api_fail(self, client, mocker):
+        mocker.patch.object(
+            views.StartJourneyAPIView,
+            "get_repository",
+            return_value=MockJourneyRepository(),
+        )
+
+        payload = {"name": "Kitt", "passengers": 6}
+        response = client.post("/adventure/start/", payload)
+
+        assert response.status_code == 400
+
 
 class TestCreateVehicleAPIView:
-    # Este no debe estar roto no debe estar roto
+    # Este no debe estar roto
     def test_create(self, client, mocker):
         vehicle_type = models.VehicleType(name="car")
         mocker.patch.object(

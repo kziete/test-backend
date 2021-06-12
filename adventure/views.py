@@ -1,6 +1,7 @@
 from rest_framework import generics
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.serializers import ValidationError
 from rest_framework.views import APIView
 
 from adventure import models, notifiers, repositories, serializers, usecases
@@ -35,7 +36,10 @@ class StartJourneyAPIView(generics.CreateAPIView):
         usecase = usecases.StartJourney(repo, notifier).set_params(
             serializer.validated_data
         )
-        usecase.execute()
+        try:
+            usecase.execute()
+        except usecases.StartJourney.Exception as e:
+            raise ValidationError({"detail": str(e)})
 
     def get_repository(self) -> repositories.JourneyRepository:
         return repositories.JourneyRepository()
