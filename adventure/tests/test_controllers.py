@@ -5,6 +5,10 @@ from adventure import models, notifiers, repositories, usecases, views
 
 from .test_usecases import MockJourneyRepository
 
+#########
+# Tests #
+#########
+
 
 class TestRepository:
     def test_create_vehicle(self, mocker):

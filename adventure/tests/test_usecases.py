@@ -25,6 +25,8 @@ class MockNotifier(notifiers.Notifier):
 #########
 # Tests #
 #########
+
+
 class TestStartJourney:
     def test_start(self):
         repo = MockJourneyRepository()
@@ -34,6 +36,14 @@ class TestStartJourney:
         journey = usecase.execute()
 
         assert journey.vehicle.name == "Kitt"
+
+    def test_cant_start(self):
+        repo = MockJourneyRepository()
+        notifier = MockNotifier()
+        data = {"name": "Kitt", "passengers": 6}
+        usecase = usecases.StartJourney(repo, notifier).set_params(data)
+        with pytest.raises(usecases.StartJourney.Exception):
+            journey = usecase.execute()
 
 
 class TestStopJourney:
