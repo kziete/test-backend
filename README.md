@@ -23,12 +23,15 @@ se recomienda proceder por el siguiente orden test_entities > test_usecases > te
 
 pero si lo deseas, puedes hacerlo en cualquier orden
 
-### Nuevo Endpoint
+### Terminar tests skipeados
 
-Desarrollar un endpoint para finalizar un `Journey`
-
+Diseñar el codigo necesario propuesto por los test skipeados, así como los tests mismos. Con el objetivo de desarrollar un api para finalizar un `Journey`
 
 ### Refactorizar código legacy
 
 Si ves que ciertos modulos están desorneados o no respetan una arquitectura limpia, puedes refactorizar el código
 recuerda que los test deben pasar el refactor
+
+### Agregar capa de autenticacion
+
+Nuestro dev no alcanzo a autenticar el api, hagalo pues
