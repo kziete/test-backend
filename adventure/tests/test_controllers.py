@@ -1,7 +1,7 @@
 from django.core import mail
+import pytest
 
 from adventure import models, notifiers, repositories, usecases, views
-
 from .test_usecases import MockJourneyRepository
 
 
@@ -52,3 +52,9 @@ class TestCreateVehicleAPIView:
         payload = {"name": "Kitt", "passengers": 4, "vehicle_type": "car"}
         response = client.post("/adventure/create-vehicle/", payload)
         assert response.status_code == 201
+
+
+class TestStopJourneyAPIView:
+    @pytest.mark.skip
+    def test_stop(self):
+        pass
