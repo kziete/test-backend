@@ -7,7 +7,6 @@ from .test_usecases import MockJourneyRepository
 
 class TestRepository:
     def test_create_vehicle(self, mocker):
-        # se parcha para no probar métodos de la ORM
         mocker.patch.object(models.Vehicle.objects, "create")
         repo = repositories.JourneyRepository()
         repo.create_vehicle(name="a", passengers=10)
@@ -16,7 +15,6 @@ class TestRepository:
 
 class TestNotifier:
     def test_send_notification(self, mocker):
-        # se parcha para no probar métodos del framework
         mocker.patch.object(mail, "send_mail")
         notifier = notifiers.Notifier()
         notifier.send_notifications()
@@ -37,6 +35,19 @@ class TestStartJourneyAPIView:
         assert response.status_code == 201
 
 
-# TODO: Insertar caso complejo
-
-# TODO: Insertar caso con celery
+class TestCreateVehicleAPIView:
+    def test_create(self, client, mocker):
+        vehicle_type = models.VehicleType(name="car")
+        mocker.patch.object(
+            models.VehicleType.objects, "get", return_value=vehicle_type
+        )
+        mocker.patch.object(
+            models.Vehicle.objects,
+            "create",
+            return_value=models.Vehicle(
+                id=1, name="Kitt", passengers=4, vehicle_type=vehicle_type
+            ),
+        )
+        payload = {"name": "Kitt", "passengers": 4, "vehicle_type": "car"}
+        response = client.post("/adventure/create-vehicle/", payload)
+        assert response.status_code == 201

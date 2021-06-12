@@ -16,3 +16,9 @@ class Vehicle(models.Model):
     def can_start(self) -> bool:
         # TODO: romper
         return self.vehicle_type.max_capacity > self.passengers
+
+
+class Journey(models.Model):
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.PROTECT)
+    start = models.DateField()
+    end = models.DateField(null=True, blank=True)

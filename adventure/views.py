@@ -1,6 +1,9 @@
 from rest_framework import generics
+from rest_framework.request import Request
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from adventure import notifiers, repositories, serializers, usecases
+from adventure import models, notifiers, repositories, serializers, usecases
 
 
 class StartJourneyAPIView(generics.CreateAPIView):
@@ -16,3 +19,23 @@ class StartJourneyAPIView(generics.CreateAPIView):
 
     def get_repository(self) -> repositories.JourneyRepository:
         return repositories.JourneyRepository()
+
+
+class CreateVehicleAPIView(APIView):
+    def post(self, request: Request) -> Response:
+        payload = request.data
+        vehicle_type = models.VehicleType.objects.get(name=payload["vehicle_type"])
+        vehicle = models.Vehicle.objects.create(
+            name=payload["name"],
+            passengers=payload["passengers"],
+            vehicle_type=vehicle_type,
+        )
+        return Response(
+            {
+                "id": vehicle.id,
+                "name": vehicle.name,
+                "passengers": vehicle.passengers,
+                "vehicle_type": vehicle.vehicle_type.name,
+            },
+            status=201,
+        )

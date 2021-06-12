@@ -16,7 +16,8 @@ class StartJourney:
     def execute(self) -> None:
         vehicle = self.repository.create_vehicle(**self.data)
         if vehicle.can_start():
+            journey = self.repository.create_journey(vehicle)
             self.notifier.send_notifications()
-            return vehicle
+            return journey
 
         return None
