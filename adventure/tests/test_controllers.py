@@ -49,7 +49,7 @@ class TestStartJourneyAPIView:
 
 
 class TestCreateVehicleAPIView:
-    # Este no debe estar roto
+    # Este no debe estar roto!
     def test_create(self, client, mocker):
         vehicle_type = models.VehicleType(name="car")
         mocker.patch.object(

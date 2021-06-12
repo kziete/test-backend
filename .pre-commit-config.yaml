@@ -22,6 +22,7 @@ repos:
     rev: 1.7.0
     hooks:
     - id: bandit
+      args: ["--exclude",  "tests"]
 -   repo: https://github.com/asottile/pyupgrade
     rev: v2.7.2
     hooks:
