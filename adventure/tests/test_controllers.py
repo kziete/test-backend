@@ -22,7 +22,7 @@ class TestNotifier:
     def test_send_notification(self, mocker):
         mocker.patch.object(mail, "send_mail")
         notifier = notifiers.Notifier()
-        notifier.send_notifications()
+        notifier.send_notifications(models.Journey())
         assert mail.send_mail.called
 
 

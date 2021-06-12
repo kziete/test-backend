@@ -19,7 +19,7 @@ class StartJourney:
             raise StartJourney.Exception("vehicle can't start")
 
         journey = self.repository.create_journey(vehicle)
-        self.notifier.send_notifications()
+        self.notifier.send_notifications(journey)
         return journey
 
     class Exception(Exception):

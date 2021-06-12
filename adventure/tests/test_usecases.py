@@ -18,7 +18,7 @@ class MockJourneyRepository(repositories.JourneyRepository):
 
 
 class MockNotifier(notifiers.Notifier):
-    def send_notifications(self):
+    def send_notifications(self, journey: models.Journey):
         pass
 
 

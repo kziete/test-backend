@@ -1,11 +1,13 @@
 from django.core import mail
 
+from adventure.models import Journey
+
 
 class Notifier:
-    def send_notifications(self) -> None:
+    def send_notifications(self, journey: Journey) -> None:
         mail.send_mail(
             "Subject here",
-            "Here is the message.",
+            f"Journey start: {journey.start}",
             "from@example.com",
             ["sdiaz@talana.com"],
             fail_silently=False,
