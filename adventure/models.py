@@ -14,7 +14,7 @@ class Vehicle(models.Model):
     vehicle_type = models.ForeignKey(VehicleType, null=True, on_delete=models.SET_NULL)
 
     def can_start(self) -> bool:
-        # TODO: romper
+        # return self.vehicle_type.max_capacity >= self.passengers
         return self.vehicle_type.max_capacity >= self.passengers
 
 

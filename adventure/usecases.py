@@ -10,6 +10,7 @@ class StartJourney:
         self.notifier = notifier
 
     def set_params(self, data: dict) -> StartJourney:
+        # self._data = data
         self.data = data
         return self
 
