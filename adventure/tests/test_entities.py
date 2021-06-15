@@ -1,3 +1,5 @@
+from datetime import date
+
 import pytest
 
 from adventure import models
@@ -17,4 +19,12 @@ class TestVehicle:
         assert not vehicle.can_start()
 
 
-# TODO: Insertar caso complejo
+@pytest.mark.skip
+class TestJourney:
+    def test_finished(self):
+        journey = models.Journey(start=date.today(), end=date.today())
+        assert journey.is_finished()
+
+    def test_not_finished(self):
+        journey = models.Journey(start=date.today())
+        assert not journey.is_finished()
