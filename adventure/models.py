@@ -20,7 +20,6 @@ class Vehicle(models.Model):
         return self.name
 
     def can_start(self) -> bool:
-        # return self.vehicle_type.max_capacity >= self.passengers
         return self.vehicle_type.max_capacity >= self.passengers
 
 

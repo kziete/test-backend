@@ -21,10 +21,10 @@ class TestVehicle:
 
 @pytest.mark.skip
 class TestJourney:
-    def test_finished(self):
+    def test_is_finished(self):
         journey = models.Journey(start=date.today(), end=date.today())
         assert journey.is_finished()
 
-    def test_not_finished(self):
+    def test_is_not_finished(self):
         journey = models.Journey(start=date.today())
         assert not journey.is_finished()
