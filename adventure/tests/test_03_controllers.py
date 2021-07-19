@@ -3,7 +3,7 @@ from django.core import mail
 
 from adventure import models, notifiers, repositories, usecases, views
 
-from .test_usecases import MockJourneyRepository
+from .test_02_usecases import MockJourneyRepository
 
 #########
 # Tests #
