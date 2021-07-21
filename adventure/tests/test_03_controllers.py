@@ -26,6 +26,24 @@ class TestNotifier:
         assert mail.send_mail.called
 
 
+class TestCreateVehicleAPIView:
+    def test_create(self, client, mocker):
+        vehicle_type = models.VehicleType(name="car")
+        mocker.patch.object(
+            models.VehicleType.objects, "get", return_value=vehicle_type
+        )
+        mocker.patch.object(
+            models.Vehicle.objects,
+            "create",
+            return_value=models.Vehicle(
+                id=1, name="Kitt", passengers=4, vehicle_type=vehicle_type
+            ),
+        )
+        payload = {"name": "Kitt", "passengers": 4, "vehicle_type": "car"}
+        response = client.post("/adventure/create-vehicle/", payload)
+        assert response.status_code == 201
+
+
 class TestStartJourneyAPIView:
     def test_api(self, client, mocker):
         mocker.patch.object(
@@ -50,24 +68,6 @@ class TestStartJourneyAPIView:
         response = client.post("/adventure/start/", payload)
 
         assert response.status_code == 400
-
-
-class TestCreateVehicleAPIView:
-    def test_create(self, client, mocker):
-        vehicle_type = models.VehicleType(name="car")
-        mocker.patch.object(
-            models.VehicleType.objects, "get", return_value=vehicle_type
-        )
-        mocker.patch.object(
-            models.Vehicle.objects,
-            "create",
-            return_value=models.Vehicle(
-                id=1, name="Kitt", passengers=4, vehicle_type=vehicle_type
-            ),
-        )
-        payload = {"name": "Kitt", "passengers": 4, "vehicle_type": "car"}
-        response = client.post("/adventure/create-vehicle/", payload)
-        assert response.status_code == 201
 
 
 class TestStopJourneyAPIView:
