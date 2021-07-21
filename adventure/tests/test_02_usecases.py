@@ -42,7 +42,7 @@ class TestStartJourney:
         notifier = MockNotifier()
         data = {"name": "Kitt", "passengers": 6}
         usecase = usecases.StartJourney(repo, notifier).set_params(data)
-        with pytest.raises(usecases.StartJourney.Exception):
+        with pytest.raises(usecases.StartJourney.CantStart):
             journey = usecase.execute()
 
 

@@ -23,5 +23,5 @@ class StartJourney:
         self.notifier.send_notifications(journey)
         return journey
 
-    class Exception(Exception):
+    class CantStart(Exception):
         pass
