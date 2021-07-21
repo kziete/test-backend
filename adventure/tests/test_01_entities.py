@@ -19,14 +19,24 @@ class TestVehicle:
         vehicle = models.Vehicle(vehicle_type=car, passengers=10)
         assert not vehicle.can_start()
 
-    @pytest.mark.skip
+    @pytest.mark.skip  # Remove
     def test_vehicle_distribution(self, car):
-        vehicle = models.Vehicle(vehicle_type=car, passengers=2)
+        """
+        TODO: implement a method called "get_distribution" that returns a matrix filled of booleans
+        with the "standard distribution" in a vehicle, from top to bottom and left to right.
+
+        e.g: for 3 passengers
+        [
+            [ True, True],
+            [ True, False],
+        ]
+        """
+        vehicle = models.Vehicle(vehicle_type=car, passengers=3)
         distribution_expected = [[True, True], [True, False]]
         assert vehicle.get_distribution() == distribution_expected
 
 
-@pytest.mark.skip
+@pytest.mark.skip  # Remove
 class TestJourney:
     # TODO: implement "is_finished" method
     # a finished journey depends on the end value
