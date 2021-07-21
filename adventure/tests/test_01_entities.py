@@ -36,6 +36,8 @@ class TestVehicle:
 
 @pytest.mark.skip
 class TestJourney:
+    # TODO: implement "is_finished" method
+    # a finished journey depends on the end value 
     def test_is_finished(self):
         journey = models.Journey(start=date.today(), end=date.today())
         assert journey.is_finished()
