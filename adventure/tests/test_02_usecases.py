@@ -9,16 +9,16 @@ from adventure import models, notifiers, repositories, usecases
 
 
 class MockJourneyRepository(repositories.JourneyRepository):
-    def create_vehicle(self, name, passengers):
+    def create_vehicle(self, name, passengers) -> models.Vehicle:
         v_type = models.VehicleType(name="car", max_capacity=5)
         return models.Vehicle(name=name, passengers=passengers, vehicle_type=v_type)
 
-    def create_journey(self, vehicle):
+    def create_journey(self, vehicle) -> models.Journey:
         return models.Journey(vehicle=vehicle, start=timezone.now().date())
 
 
 class MockNotifier(notifiers.Notifier):
-    def send_notifications(self, journey: models.Journey):
+    def send_notifications(self, journey: models.Journey) -> None:
         pass
 
 
