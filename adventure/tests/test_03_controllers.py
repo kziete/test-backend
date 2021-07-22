@@ -73,4 +73,6 @@ class TestStartJourneyAPIView:
 class TestStopJourneyAPIView:
     @pytest.mark.skip
     def test_stop(self):
+        # TODO: Implements a endpoint that make use of a StopJourney use case
+        # and test it
         pass
