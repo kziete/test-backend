@@ -33,6 +33,18 @@ class TestVehicle:
         distribution_expected = [[True, True], [True, False]]
         assert vehicle.get_distribution() == distribution_expected
 
+    @pytest.mark.skip  # Remove
+    def test_valid_number_plate(self):
+        # TODO: implemente a function called "validate_number_plate"
+        # a valid number plate concist of three pairs of alphanumeric chars separated by hyphen
+        # the first pair must be letters and the others two muys be numbers
+        # e.g: AA-12-34
+        assert models.validate_number_plate("AA-12-34")
+        assert not models.validate_number_plate("AA-BB-34")
+        assert not models.validate_number_plate("12-34-56")
+        assert not models.validate_number_plate("AA1234")
+        assert not models.validate_number_plate("AA 12 34")
+
 
 @pytest.mark.skip  # Remove
 class TestJourney:

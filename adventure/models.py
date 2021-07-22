@@ -15,6 +15,7 @@ class Vehicle(models.Model):
     name = models.CharField(max_length=32)
     passengers = models.PositiveIntegerField()
     vehicle_type = models.ForeignKey(VehicleType, null=True, on_delete=models.SET_NULL)
+    numner_plate = models.CharField(max_length=10)
 
     def __str__(self) -> str:
         return self.name
