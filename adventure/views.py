@@ -38,7 +38,7 @@ class StartJourneyAPIView(generics.CreateAPIView):
         )
         try:
             usecase.execute()
-        except usecases.StartJourney.Exception as e:
+        except usecases.StartJourney.CantStart as e:
             raise ValidationError({"detail": str(e)})
 
     def get_repository(self) -> repositories.JourneyRepository:

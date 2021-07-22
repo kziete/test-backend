@@ -17,7 +17,7 @@ class StartJourney:
     def execute(self) -> None:
         vehicle = self.repository.create_vehicle(**self.data)
         if not vehicle.can_start():
-            raise StartJourney.Exception("vehicle can't start")
+            raise StartJourney.CantStart("vehicle can't start")
 
         journey = self.repository.create_journey(vehicle)
         self.notifier.send_notifications(journey)
