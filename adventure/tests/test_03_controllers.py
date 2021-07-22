@@ -70,8 +70,8 @@ class TestStartJourneyAPIView:
         assert response.status_code == 400
 
 
+@pytest.mark.skip  # Remove
 class TestStopJourneyAPIView:
-    @pytest.mark.skip
     def test_stop(self):
         # TODO: Implements a endpoint that make use of a StopJourney use case
         # and test it

@@ -47,7 +47,7 @@ class TestStartJourney:
 
 
 class TestStopJourney:
-    @pytest.mark.skip
+    @pytest.mark.skip  # Remove
     def test_stop(self):
         # TODO: Implement a StopJourney Usecase
         # that it take a started journey as a parameter and set a "end" value
