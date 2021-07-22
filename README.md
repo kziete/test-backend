@@ -17,7 +17,7 @@ docker-compose run --rm web pytest
 
 ### Terminar tests skipeados
 
-Desarrollar el código necesario propuesto por los test skipeados (debes remover el marcador `@pytest.mark.skip` para habilitar el test
+Desarrollar el código necesario propuesto por los test skipeados (debes remover el marcador `@pytest.mark.skip` para habilitar el test)
 
 ### Refactorizar código legacy
 
