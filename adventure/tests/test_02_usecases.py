@@ -56,6 +56,6 @@ class TestStopJourney:
     @pytest.mark.skip  # Remove
     def test_stop(self):
         # TODO: Implement a StopJourney Usecase
-        # that it take a started journey as a parameter and set a "end" value
-        # then save it to the database
+        # it takes a started journey as a parameter and sets an "end" value
+        # then saves it to the database
         pass

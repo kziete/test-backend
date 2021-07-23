@@ -35,9 +35,9 @@ class TestVehicle:
 
     @pytest.mark.skip  # Remove
     def test_valid_number_plate(self):
-        # TODO: implemente a function called "validate_number_plate"
-        # a valid number plate concist of three pairs of alphanumeric chars separated by hyphen
-        # the first pair must be letters and the others two muys be numbers
+        # TODO: implement a function called "validate_number_plate"
+        # a valid number plate concists of three pairs of alphanumeric chars separated by hyphen
+        # the first pair must be letters and the rest must be numbers
         # e.g: AA-12-34
         assert models.validate_number_plate("AA-12-34")
         assert not models.validate_number_plate("AA-BB-34")
