@@ -10,12 +10,12 @@ class StartJourney:
         self.notifier = notifier
 
     def set_params(self, data: dict) -> StartJourney:
-        # self._data = data
         self.data = data
         return self
 
     def execute(self) -> None:
-        vehicle = self.repository.create_vehicle(**self.data)
+        car = self.repository.get_or_create_car()
+        vehicle = self.repository.create_vehicle(vehicle_type=car, **self.data)
         if not vehicle.can_start():
             raise StartJourney.CantStart("vehicle can't start")
 

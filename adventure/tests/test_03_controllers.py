@@ -14,7 +14,8 @@ class TestRepository:
     def test_create_vehicle(self, mocker):
         mocker.patch.object(models.Vehicle.objects, "create")
         repo = repositories.JourneyRepository()
-        repo.create_vehicle(name="a", passengers=10)
+        car = models.VehicleType()
+        repo.create_vehicle(name="a", passengers=10, vehicle_type=car)
         assert models.Vehicle.objects.create.called
 
 
@@ -40,7 +41,7 @@ class TestCreateVehicleAPIView:
             ),
         )
         payload = {"name": "Kitt", "passengers": 4, "vehicle_type": "car"}
-        response = client.post("/adventure/create-vehicle/", payload)
+        response = client.post("/api/adventure/create-vehicle/", payload)
         assert response.status_code == 201
 
 
@@ -53,7 +54,7 @@ class TestStartJourneyAPIView:
         )
 
         payload = {"name": "Kitt", "passengers": 2}
-        response = client.post("/adventure/start/", payload)
+        response = client.post("/api/adventure/start/", payload)
 
         assert response.status_code == 201
 
@@ -65,7 +66,7 @@ class TestStartJourneyAPIView:
         )
 
         payload = {"name": "Kitt", "passengers": 6}
-        response = client.post("/adventure/start/", payload)
+        response = client.post("/api/adventure/start/", payload)
 
         assert response.status_code == 400
 

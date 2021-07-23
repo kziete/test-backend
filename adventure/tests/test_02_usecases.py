@@ -9,9 +9,15 @@ from adventure import models, notifiers, repositories, usecases
 
 
 class MockJourneyRepository(repositories.JourneyRepository):
-    def create_vehicle(self, name, passengers) -> models.Vehicle:
-        v_type = models.VehicleType(name="car", max_capacity=5)
-        return models.Vehicle(name=name, passengers=passengers, vehicle_type=v_type)
+    def get_or_create_car(self) -> models.VehicleType:
+        return models.VehicleType(name="car", max_capacity=5)
+
+    def create_vehicle(
+        self, name: str, passengers: int, vehicle_type: models.VehicleType
+    ) -> models.Vehicle:
+        return models.Vehicle(
+            name=name, passengers=passengers, vehicle_type=vehicle_type
+        )
 
     def create_journey(self, vehicle) -> models.Journey:
         return models.Journey(vehicle=vehicle, start=timezone.now().date())
