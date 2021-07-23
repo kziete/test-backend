@@ -16,3 +16,9 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - mailhog
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - 8025:8025
