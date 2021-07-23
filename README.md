@@ -7,13 +7,25 @@ Una pequeña historia, bla, bla, bla
 - docker
 - docker-compose
 
-## Ejecución
+## Iniciar
 
+`docker-compose up`
+
+### Swagger
+
+locahost:8000/http://localhost:8000/api/schema/swagger-ui/
+
+
+### Mailhog
+
+localhost:1025
+
+## Test
 ```bash
 docker-compose run --rm web pytest
-```
 
 ## Tareas
+pas
 
 ### Terminar tests skipeados
 
@@ -26,3 +38,5 @@ recuerda que los test deben pasar el refactor
 
 
 ## Tirar algo a celery
+
+bla bla
