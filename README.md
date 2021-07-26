@@ -13,12 +13,12 @@ Una pequeña historia, bla, bla, bla
 
 ### Swagger
 
-locahost:8000/http://localhost:8000/api/schema/swagger-ui/
+http://localhost:8000/api/schema/swagger-ui/
 
 
 ### Mailhog
 
-localhost:1025
+http://localhost:1025
 
 ## Test
 `docker-compose run --rm web pytest`
