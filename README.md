@@ -24,7 +24,6 @@ http://localhost:1025
 `docker-compose run --rm web pytest`
 
 ## Tareas
-pas
 
 ### Terminar tests skipeados
 
