@@ -31,6 +31,5 @@ Desarrollar el código necesario propuesto por los test skipeados (debes remover
 
 ### Refactorizar código legacy
 
-Si ves que ciertos modulos están desorneados o no respetan una arquitectura limpia, puedes refactorizar el código
+Si ves que ciertos modulos están desordenados o no respetan una arquitectura limpia, puedes refactorizar el código.
 recuerda que los test deben pasar el refactor
-
