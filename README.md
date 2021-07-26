@@ -21,8 +21,7 @@ locahost:8000/http://localhost:8000/api/schema/swagger-ui/
 localhost:1025
 
 ## Test
-```bash
-docker-compose run --rm web pytest
+`docker-compose run --rm web pytest`
 
 ## Tareas
 pas
@@ -36,7 +35,3 @@ Desarrollar el código necesario propuesto por los test skipeados (debes remover
 Si ves que ciertos modulos están desorneados o no respetan una arquitectura limpia, puedes refactorizar el código
 recuerda que los test deben pasar el refactor
 
-
-## Tirar algo a celery
-
-bla bla
